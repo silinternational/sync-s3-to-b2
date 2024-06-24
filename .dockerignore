@@ -1,0 +1,5 @@
+.git
+.gitignore
+LICENSE
+local.env.dist
+README.md
