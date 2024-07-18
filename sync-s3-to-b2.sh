@@ -5,6 +5,45 @@ STATUS=0
 
 echo "${MYNAME}: Started"
 
+if [ "${B2_APPLICATION_KEY_ID}" = "" ]; then
+	echo "${MYNAME}: FATAL: environment variable B2_APPLICATION_KEY_ID is required."
+	STATUS=1
+fi
+
+if [ "${B2_APPLICATION_KEY}" = "" ]; then
+	echo "${MYNAME}: FATAL: environment variable B2_APPLICATION_KEY is required."
+	STATUS=1
+fi
+
+if [ "${AWS_ACCESS_KEY}" = "" ]; then
+	echo "${MYNAME}: FATAL: environment variable AWS_ACCESS_KEY is required."
+	STATUS=1
+fi
+
+if [ "${AWS_SECRET_KEY}" = "" ]; then
+	echo "${MYNAME}: FATAL: environment variable AWS_SECRET_KEY is required."
+	STATUS=1
+fi
+
+if [ "${AWS_REGION}" = "" ]; then
+	echo "${MYNAME}: FATAL: environment variable AWS_REGION is required."
+	STATUS=1
+fi
+
+if [ "${B2_BUCKET}" = "" ]; then
+	echo "${MYNAME}: FATAL: environment variable B2_BUCKET is required."
+	STATUS=1
+fi
+
+if [ "${S3_BUCKET}" = "" ]; then
+	echo "${MYNAME}: FATAL: environment variable S3_BUCKET is required."
+	STATUS=1
+fi
+
+if [ $STATUS -ne 0 ]; then
+	exit $STATUS
+fi
+
 echo "${MYNAME}: Configuring rclone"
 
 mkdir -p ~/.config/rclone
